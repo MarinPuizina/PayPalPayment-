@@ -1,0 +1,40 @@
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**
+!**/src/test/**
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.iprde ###
+.vscode/
+.idea/
+*.iml
+out/
+lib/
+
+*.class
+
+# Package Files #
+*.war
+*.ear
+
+
+# Maven #
+dependency-reduced-pom.xml
+target/
+
+# logs #
+*.log
+logs/
