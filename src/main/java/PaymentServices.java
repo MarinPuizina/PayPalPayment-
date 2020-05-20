@@ -6,4 +6,11 @@ public class PaymentServices {
     private static final String CLIENT_SECRET = "EFesiE2H4_IJI8M--nvhzZyug8VmEaShmmKkvazp0SUrSquAdBgrOusigmHDCnXAQSd1hCGYEl6Ob1no";
     private static final String MODE = "sandbox";
 
+    public String authorizePayment(OrderDetail orderDetail) {
+
+        
+
+        return null;
+    }
+
 }
