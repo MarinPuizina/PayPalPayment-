@@ -2,6 +2,7 @@ package main.java;
 
 import com.paypal.api.payments.Payer;
 import com.paypal.api.payments.PayerInfo;
+import com.paypal.api.payments.RedirectUrls;
 
 public class PaymentServices {
 
@@ -13,7 +14,18 @@ public class PaymentServices {
 
         Payer payer = getPayer();
 
+        RedirectUrls redirectURLs = getRedirectURLs();
+
         return null;
+    }
+
+    private RedirectUrls getRedirectURLs() {
+
+        RedirectUrls redirectUrls = new RedirectUrls();
+        redirectUrls.setCancelUrl("http://localhost:8181/PayPalPayment/web/cancel.html");
+        redirectUrls.setReturnUrl("http://localhost:8181/PayPalPayment/web/review_payment.html");
+
+        return redirectUrls;
     }
 
     private Payer getPayer() {
