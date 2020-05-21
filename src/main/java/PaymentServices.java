@@ -1,8 +1,9 @@
 package main.java;
 
-import com.paypal.api.payments.Payer;
-import com.paypal.api.payments.PayerInfo;
-import com.paypal.api.payments.RedirectUrls;
+import com.paypal.api.payments.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PaymentServices {
 
@@ -17,6 +18,43 @@ public class PaymentServices {
         RedirectUrls redirectURLs = getRedirectURLs();
 
         return null;
+    }
+
+    private List<Transaction> getTransactionInformation(OrderDetail orderDetail) {
+
+        Details details = new Details();
+        details.setShipping(orderDetail.getShipping());
+        details.setTax(orderDetail.getTax());
+        details.setSubtotal(orderDetail.getSubtotal());
+
+        Amount amount = new Amount();
+        amount.setCurrency("USD");
+        amount.setTotal(orderDetail.getTotal());
+        amount.setDetails(details);
+
+        Transaction transaction = new Transaction();
+        transaction.setAmount(amount);
+        transaction.setDescription(orderDetail.getProductName());
+
+        Item item = new Item();
+        item.setCurrency("USD")
+                .setName(orderDetail.getProductName())
+                .setPrice(orderDetail.getSubtotal())
+                .setTax(orderDetail.getTax())
+                .setQuantity("1");
+
+
+        ItemList itemList = new ItemList();
+        List<Item> items = new ArrayList<>();
+
+        items.add(item);
+        itemList.setItems(items);
+        transaction.setItemList(itemList);
+
+        List<Transaction> listTransaction = new ArrayList<>();
+        listTransaction.add(transaction)
+
+        return listTransaction;
     }
 
     private RedirectUrls getRedirectURLs() {
