@@ -1,6 +1,8 @@
 package main.java;
 
 import com.paypal.api.payments.*;
+import com.paypal.base.rest.APIContext;
+import com.paypal.base.rest.PayPalRESTException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +13,7 @@ public class PaymentServices {
     private static final String CLIENT_SECRET = "EFesiE2H4_IJI8M--nvhzZyug8VmEaShmmKkvazp0SUrSquAdBgrOusigmHDCnXAQSd1hCGYEl6Ob1no";
     private static final String MODE = "sandbox";
 
-    public String authorizePayment(OrderDetail orderDetail) {
+    public String authorizePayment(OrderDetail orderDetail) throws PayPalRESTException {
 
         Payer payer = getPayer();
         RedirectUrls redirectURLs = getRedirectURLs();
@@ -22,6 +24,9 @@ public class PaymentServices {
                 .setRedirectUrls(redirectURLs)
                 .setPayer(payer)
                 .setIntent("authorize");
+
+        APIContext apiContext = new APIContext(CLIENT_ID, CLIENT_SECRET, MODE);
+        Payment approvedPayment = requestPayment.create(apiContext);
 
         return null;
     }
