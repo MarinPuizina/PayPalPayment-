@@ -14,8 +14,14 @@ public class PaymentServices {
     public String authorizePayment(OrderDetail orderDetail) {
 
         Payer payer = getPayer();
-
         RedirectUrls redirectURLs = getRedirectURLs();
+        List<Transaction> listTransaction = getTransactionInformation(orderDetail);
+
+        Payment requestPayment = new Payment();
+        requestPayment.setTransactions(listTransaction)
+                .setRedirectUrls(redirectURLs)
+                .setPayer(payer)
+                .setIntent("authorize");
 
         return null;
     }
