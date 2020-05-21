@@ -11,6 +11,12 @@ public class PaymentServices {
 
     public String authorizePayment(OrderDetail orderDetail) {
 
+        Payer payer = getPayer();
+
+        return null;
+    }
+
+    private Payer getPayer() {
         Payer payer = new Payer();
         payer.setPaymentMethod("paypal");
 
@@ -22,8 +28,7 @@ public class PaymentServices {
 
         payer.setPayerInfo(payerInfo);
 
-
-        return null;
+        return payer;
     }
 
 }
