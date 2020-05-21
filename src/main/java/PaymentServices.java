@@ -33,19 +33,28 @@ public class PaymentServices {
 
     private List<Transaction> getTransactionInformation(OrderDetail orderDetail) {
 
-        Details details = new Details();
-        details.setShipping(orderDetail.getShipping());
-        details.setTax(orderDetail.getTax());
-        details.setSubtotal(orderDetail.getSubtotal());
+        Details details = getDetails(orderDetail);
 
-        Amount amount = new Amount();
-        amount.setCurrency("USD");
-        amount.setTotal(orderDetail.getTotal());
-        amount.setDetails(details);
+        Amount amount = getAmount(orderDetail, details);
 
-        Transaction transaction = new Transaction();
-        transaction.setAmount(amount);
-        transaction.setDescription(orderDetail.getProductName());
+        Transaction transaction = getTransaction(orderDetail, amount);
+
+        Item item = getItem(orderDetail);
+
+        ItemList itemList = new ItemList();
+        List<Item> items = new ArrayList<>();
+        items.add(item);
+        itemList.setItems(items);
+
+        transaction.setItemList(itemList);
+
+        List<Transaction> listTransaction = new ArrayList<>();
+        listTransaction.add(transaction);
+
+        return listTransaction;
+    }
+
+    private Item getItem(OrderDetail orderDetail) {
 
         Item item = new Item();
         item.setCurrency("USD")
@@ -54,18 +63,36 @@ public class PaymentServices {
                 .setTax(orderDetail.getTax())
                 .setQuantity("1");
 
+        return item;
+    }
 
-        ItemList itemList = new ItemList();
-        List<Item> items = new ArrayList<>();
+    private Transaction getTransaction(OrderDetail orderDetail, Amount amount) {
 
-        items.add(item);
-        itemList.setItems(items);
-        transaction.setItemList(itemList);
+        Transaction transaction = new Transaction();
+        transaction.setAmount(amount);
+        transaction.setDescription(orderDetail.getProductName());
 
-        List<Transaction> listTransaction = new ArrayList<>();
-        listTransaction.add(transaction)
+        return transaction;
+    }
 
-        return listTransaction;
+    private Amount getAmount(OrderDetail orderDetail, Details details) {
+
+        Amount amount = new Amount();
+        amount.setCurrency("USD");
+        amount.setTotal(orderDetail.getTotal());
+        amount.setDetails(details);
+
+        return amount;
+    }
+
+    private Details getDetails(OrderDetail orderDetail) {
+
+        Details details = new Details();
+        details.setShipping(orderDetail.getShipping());
+        details.setTax(orderDetail.getTax());
+        details.setSubtotal(orderDetail.getSubtotal());
+
+        return details;
     }
 
     private RedirectUrls getRedirectURLs() {
