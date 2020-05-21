@@ -25,32 +25,32 @@ public class OrderDetail {
         this.productName = productName;
     }
 
-    public float getSubtotal() {
-        return subtotal;
+    public String getSubtotal() {
+        return String.format("%.2f", subtotal);
     }
 
     public void setSubtotal(float subtotal) {
         this.subtotal = subtotal;
     }
 
-    public float getShipping() {
-        return shipping;
+    public String getShipping() {
+        return String.format("%.2f", shipping);
     }
 
     public void setShipping(float shipping) {
         this.shipping = shipping;
     }
 
-    public float getTax() {
-        return tax;
+    public String getTax() {
+        return String.format("%.2f", tax);
     }
 
     public void setTax(float tax) {
         this.tax = tax;
     }
 
-    public float getTotal() {
-        return total;
+    public String getTotal() {
+        return String.format("%.2f", total);
     }
 
     public void setTotal(float total) {
