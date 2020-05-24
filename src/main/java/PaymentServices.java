@@ -28,7 +28,23 @@ public class PaymentServices {
         APIContext apiContext = new APIContext(CLIENT_ID, CLIENT_SECRET, MODE);
         Payment approvedPayment = requestPayment.create(apiContext);
 
-        return null;
+        return getApprovalLink(approvedPayment);
+    }
+
+    private String getApprovalLink(Payment approvedPayment) {
+
+        List<Links> links = approvedPayment.getLinks();
+        String approvalLink = null;
+
+        for (Links link : links) {
+
+            if (link.getRel().equalsIgnoreCase("approval_url")) {
+                approvalLink = link.getHref();
+            }
+
+        }
+
+        return approvalLink;
     }
 
     private List<Transaction> getTransactionInformation(OrderDetail orderDetail) {
