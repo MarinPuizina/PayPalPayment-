@@ -7,8 +7,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "AuthorizePaymentServlet")
+@WebServlet(name = "authorize_payment") // mush match the form action (checkout.html)
 public class AuthorizePaymentServlet extends HttpServlet {
+
+
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
