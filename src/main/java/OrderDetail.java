@@ -3,17 +3,17 @@ package main.java;
 public class OrderDetail {
 
     private String productName;
-    private String subtotal;
-    private String shipping;
-    private String tax;
-    private String total;
+    private Float subtotal;
+    private Float shipping;
+    private Float tax;
+    private Float total;
 
     public OrderDetail(String productName, String subtotal, String shipping, String tax, String total) {
         this.productName = productName;
-        this.subtotal = subtotal;
-        this.shipping = shipping;
-        this.tax = tax;
-        this.total = total;
+        this.subtotal = Float.parseFloat(subtotal);
+        this.shipping = Float.parseFloat(shipping);
+        this.tax = Float.parseFloat(tax);
+        this.total = Float.parseFloat(total);
     }
 
 
