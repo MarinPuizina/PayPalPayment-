@@ -28,6 +28,7 @@ public class PaymentServices {
         APIContext apiContext = new APIContext(CLIENT_ID, CLIENT_SECRET, MODE);
         Payment approvedPayment = requestPayment.create(apiContext);
 
+        System.out.println("--> Approved Payment <--");
         System.out.println(approvedPayment);
 
         return getApprovalLink(approvedPayment);
@@ -45,6 +46,8 @@ public class PaymentServices {
             }
 
         }
+        System.out.println("--> Approval Link <--");
+        System.out.println(approvalLink.toString());
 
         return approvalLink;
     }
